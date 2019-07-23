@@ -57,13 +57,13 @@ export interface SyncOptions extends Logging {
    * The schema that the tables should be created in. This can be overridden for each table in sequelize.define
    */
   schema?: string;
-  
-   /**
+
+  /**
    * An optional parameter to specify the schema search_path (Postgres only)
    */
   searchPath?: string;
-  
-   /**
+
+  /**
    * If hooks is true then beforeSync, afterSync, beforeBulkSync, afterBulkSync hooks will be called
    */
   hooks?: boolean;
@@ -324,7 +324,7 @@ export interface Options extends Logging {
   typeValidation?: boolean;
 
   /**
-   * Sets available operator aliases. See (http://docs.sequelizejs.com/manual/tutorial/querying.html#operators)
+   * Sets available operator aliases. See (https://sequelize.org/master/manual/tutorial/querying.html#operators)
    * for more information. Set to false to disable operator aliases completely (recommended)
    *
    * @default all aliases
@@ -620,6 +620,24 @@ export class Sequelize extends Hooks {
    */
   public static afterConnect(name: string, fn: (connection: unknown, options: Config) => void): void;
   public static afterConnect(fn: (connection: unknown, options: Config) => void): void;
+
+  /**
+   * A hook that is run before a connection is released
+   *
+   * @param name
+   * @param fn   A callback function that is called with options
+   */
+  public static beforeDisconnect(name: string, fn: (connection: unknown) => void): void;
+  public static beforeDisconnect(fn: (connection: unknown) => void): void;
+
+  /**
+   * A hook that is run after a connection is released
+   *
+   * @param name
+   * @param fn   A callback function that is called with options
+   */
+  public static afterDisconnect(name: string, fn: (connection: unknown) => void): void;
+  public static afterDisconnect(fn: (connection: unknown) => void): void;
 
   /**
    * A hook that is run before a find (select) query, after any { include: {all: ...} } options are expanded
@@ -1067,16 +1085,16 @@ export class Sequelize extends Hooks {
    * getters.
    *
    * For a list of possible data types, see
-   * http://docs.sequelizejs.com/en/latest/docs/models-definition/#data-types
+   * https://sequelize.org/master/en/latest/docs/models-definition/#data-types
    *
    * For more about getters and setters, see
-   * http://docs.sequelizejs.com/en/latest/docs/models-definition/#getters-setters
+   * https://sequelize.org/master/en/latest/docs/models-definition/#getters-setters
    *
    * For more about instance and class methods, see
-   * http://docs.sequelizejs.com/en/latest/docs/models-definition/#expansion-of-models
+   * https://sequelize.org/master/en/latest/docs/models-definition/#expansion-of-models
    *
    * For more about validation, see
-   * http://docs.sequelizejs.com/en/latest/docs/models-definition/#validations
+   * https://sequelize.org/master/en/latest/docs/models-definition/#validations
    *
    * @param modelName  The name of the model. The model will be stored in `sequelize.models` under this name
    * @param attributes An object, where each attribute is a column of the table. Each column can be either a

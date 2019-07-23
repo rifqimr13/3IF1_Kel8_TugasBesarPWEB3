@@ -5,23 +5,10 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 
-const homeRouter = require('./routes/home');
-const productRouter = require('./routes/product');
+const indexRouter = require('./routes');
 
-const sequelize = require('./configs/sequelize');
+app.use(indexRouter);
 
-const Product = require('./models/product');
-const Sales = require('./models/sales');
-const SalesProduct = require('./models/sales_product');
-
-// Associations between Models
-Sales.hasMany(SalesProduct);
-SalesProduct.belongsTo(Product);
-
-app.use(homeRouter);
-app.use('/product', productRouter);
-
-app.listen(3000, () => {
+app.listen(3108, () => {
     console.log('server started');
-    sequelize.sync();
 })

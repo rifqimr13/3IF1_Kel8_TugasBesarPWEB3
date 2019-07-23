@@ -1,24 +1,28 @@
 {
-  "name": "my-application",
+  "name": "tubes_p.web_kel8_3if-01",
   "version": "1.0.0",
-  "description": "Node Express Application Template for Teaching Purpose",
+  "description": "3IF-01_Kelompok 8 Tugas Besar Web 3",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "node",
-    "express"
-  ],
-  "author": "Charel",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rifqimr13/3IF1_Kel8_TugasBesarPWEB3.git"
+  },
+  "author": "Kemal Sholehuddin & Rifqi Muhamad Rizal",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rifqimr13/3IF1_Kel8_TugasBesarPWEB3/issues"
+  },
+  "homepage": "https://github.com/rifqimr13/3IF1_Kel8_TugasBesarPWEB3#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "mysql2": "^1.6.5",
-    "nodemon": "^1.19.1",
-    "sequelize": "^5.8.10"
+    "sequelize": "^5.10.2"
   }
 }
