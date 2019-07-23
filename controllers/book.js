@@ -114,3 +114,15 @@ module.exports.deleteBook = (req, res) => {
         }
     })
 }
+
+module.exports.FindAll = (req, res) => {
+    Book.findAll({
+    })
+        .then((book) => {
+            res.json(book);
+        })
+        .catch((error) => {
+            throw error;
+        })
+}
+
