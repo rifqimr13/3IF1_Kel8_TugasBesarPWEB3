@@ -7,5 +7,4 @@
 1. Username : Kemal 
 2. Password : admin 
 3. Roles : Admin
-4. Token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJLZW1hbCIsInJvbGVzIjoiYWRtaW4iLCJpYXQiOjE1NjM4ODUwNDZ9.0JMp31FmNdcg-p5ObrxvUOiBeTEXIc7Rn57tkF3ydLs
   
