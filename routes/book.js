@@ -11,5 +11,6 @@ router.delete('/delete/:id', auth.verifyToken, bookController.deleteBook);
 
 //Router User
 router.get('/all', bookController.FindAll);
-//router.get('/:judul', bookController.findJudul);
+router.get('/:judul', bookController.FindJudul);
+
 module.exports = router;

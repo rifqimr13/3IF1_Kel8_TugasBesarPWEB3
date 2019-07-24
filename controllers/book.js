@@ -126,3 +126,14 @@ module.exports.FindAll = (req, res) => {
         })
 }
 
+module.exports.FindJudul = (req, res) => {
+    Book.findAll({
+        where: {
+            judul: req.params.judul
+        }
+    }).then((book) => {
+        res.json(book);
+    }).catch((error) => {
+        throw error;
+    });
+}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2019 at 04:26 PM
+-- Generation Time: Jul 23, 2019 at 06:05 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.1.26
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_book`
+-- Database: `if1_kelompok8_book`
 --
 
 -- --------------------------------------------------------
@@ -52,6 +52,34 @@ INSERT INTO `books` (`id`, `judul`, `penulis`, `penerbit`, `tahun_terbit`, `stoc
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `jumlahbeli` int(11) DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `sessionId` int(11) DEFAULT NULL,
+  `bookId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `userId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -70,7 +98,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `roles`, `createdAt`, `updatedAt`) VALUES
-(1, 'Kemal', 'admin@gmail.com', '$2a$10$oChVzJejbmuK/becXzGgd.npIkXlBwzB9S646620kiozgVN8k5/L.', 'admin', '2019-07-23 12:27:58', '2019-07-23 12:27:58');
+(1, 'Kemal', 'admin@gmail.com', '$2a$10$oChVzJejbmuK/becXzGgd.npIkXlBwzB9S646620kiozgVN8k5/L.', 'admin', '2019-07-23 12:27:58', '2019-07-23 12:27:58'),
+(2, 'rifqi', 'admin2@gmail.com', '$2a$10$C90okBVMMqzoYuQHI/tsc.xDk4xs5VwAjjuzav0cdYPIVTCPPXjTu', 'admin', '2019-07-23 16:04:27', '2019-07-23 16:04:27');
 
 --
 -- Indexes for dumped tables
@@ -81,6 +110,21 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `roles`, `createdAt`
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessionId` (`sessionId`),
+  ADD KEY `bookId` (`bookId`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indexes for table `users`
@@ -99,10 +143,39 @@ ALTER TABLE `books`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sessions`
+--
+ALTER TABLE `sessions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`sessionId`) REFERENCES `sessions` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`bookId`) REFERENCES `books` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
